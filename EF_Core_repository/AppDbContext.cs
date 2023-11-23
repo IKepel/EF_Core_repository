@@ -13,7 +13,7 @@ namespace EF_Core_repository
 
         public AppDbContext()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

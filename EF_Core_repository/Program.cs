@@ -22,3 +22,12 @@ foreach (var movie in movieLibrary)
 {
     Console.WriteLine(movie);
 }
+
+myDb.Movies.Add(new Movie { Title = "Marvel", IsAdult = false });
+myDb.SaveChanges();
+
+Console.WriteLine();
+foreach (var movie in movieLibrary)
+{
+    Console.WriteLine(movie);
+}

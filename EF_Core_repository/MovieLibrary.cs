@@ -18,10 +18,21 @@ namespace EF_Core_repository
 
         public IEnumerator GetEnumerator()
         {
-            foreach (var movie in _dbContext.Movies.Where(m => IsNightTime() || !m.IsAdult))
+            if (IsNightTime())
             {
-                yield return movie.Title;
+                foreach (var movie in _dbContext.Movies)
+                {
+                    yield return movie.Title;
+                }
             }
+            else
+            {
+                foreach (var movie in _dbContext.Movies.Where(m => !m.IsAdult))
+                {
+                    yield return movie.Title;
+                }
+            }
+            
         }
 
         private bool IsNightTime() => DateTime.Now.Hour >= 23 || DateTime.Now.Hour < 7;
